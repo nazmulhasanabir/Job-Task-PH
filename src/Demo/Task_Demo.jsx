@@ -4,8 +4,7 @@ import { GiCancel } from "react-icons/gi";
 import { MdEditDocument } from "react-icons/md";
 const Task_Demo = ({ task }) => {
   const { id, time, date, description, category, title } = task;
-  const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id });
+  const { attributes, listeners, setNodeRef, transform, transition } =useSortable({ id: id });
 
   const style = {
     transition,

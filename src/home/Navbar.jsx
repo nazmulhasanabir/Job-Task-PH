@@ -1,6 +1,26 @@
 import { Link } from "react-router-dom";
-
+import Swal from "sweetalert2";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import app from "../page/Firebase.init";
 const Navbar = () => {
+  const handleGoogle = async () => {
+    const auth = getAuth(app)
+    const provider = new GoogleAuthProvider();
+        
+    // try {
+      const result = await signInWithPopup(auth, provider);
+      if(result.user){
+        Swal.fire({
+                title: "Success!",
+                text: "Google sign-In successful!",
+                icon: "success",
+                confirmButtonText: "OK",
+              });
+      }
+      console.log("Google sign-in successful:", result.user);
+
+      
+  };
   return (
     <div>
       <div className="navbar bg-purple-400 text-white">
@@ -14,13 +34,10 @@ const Navbar = () => {
                 <a>Home</a>
               </Link>
             </li>
-
+              
             <li>
-              <Link to={"/addTask"}>
-                <a>Add Task</a>
-              </Link>
+              <p onClick={handleGoogle}>Log-In</p>
             </li>
-
             <li>
               <a>Log-Out</a>
             </li>

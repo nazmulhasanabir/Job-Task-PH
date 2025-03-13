@@ -7,8 +7,8 @@ import {
 } from "react-router-dom";
 import Home from './home/Home';
 import TaskBoard from './home/ToDo/TaskBoard';
-import TodoCard from './Dashboard/TodoCard';
-import Three from './Dashboard/Three';
+import TaskForm from './Dashboard/TaskForm';
+;
 
 
 
@@ -17,20 +17,19 @@ const router = createBrowserRouter([
     path: "/",
     element: <Home></Home>,
     children:[
+     
       {
-        path: "/addTask",
+        path:"/",
         element:<TaskBoard></TaskBoard>
       },
       {
-        path:"/",
-        element:<Three></Three>
+        path :"taskform",
+        element:<TaskForm></TaskForm>
       }
+      
     ]
   },
-  // {
-  //   path:"/",
-  //   element:<TodoCard></TodoCard>
-  // }
+
 ]);
 
 createRoot(document.getElementById('root')).render(

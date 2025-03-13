@@ -1,32 +1,33 @@
-import { useState } from "react";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+import { GiCancel } from "react-icons/gi";
+import { MdEditDocument } from "react-icons/md";
+const Done = ({ task }) => {
+  const { id, time, date, description, category, title } = task;
+  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id : id});
 
-const Done = () => {
-  // Define state for "Done" tasks
-  const [doneTasks, setDoneTasks] = useState([
-    { id: 1, title: "Submit Assignment", description: "Completed Math Assignment",category:"done", date: "2025-02-19", time: "05:00 PM" },
-    { id: 2, title: "Book Tickets", description: "Flight tickets confirmed",category:"done", date: "2025-02-20", time: "09:15 AM" },
-  ]);
-
+  const style = {
+    transition,
+    transform: CSS.Transform.toString(transform),
+  };
   return (
-    <div className="bg-white p-4 w-80 rounded-lg shadow-lg border">
-      {/* Header */}
-      <div className="flex justify-between items-center">
-        <h3 className="text-lg font-bold">Done</h3>
+    <div
+      style={style}
+      ref={setNodeRef}
+      {...attributes}
+      {...listeners}
+      className=""
+    >
+      <div className="bg-white p-4 w-80 rounded-lg shadow-lg border flex items-center gap-2">
+        <input
+          type="text"
+          value={title}
+          className="w-full border rounded-md p-2 text-gray-700 bg-gray-100"
+          readOnly
+        />
+        <MdEditDocument className="w-8 h-8" />
+        <GiCancel className="w-8 h-8" />
       </div>
-
-      {/* Task List */}
-      <div className="mt-2 space-y-2">
-        {doneTasks.map((task) => (
-          <input
-            key={task.id}
-            type="text"
-            value={task.title} // Dynamically display task title
-            className="w-full border rounded-md p-2 text-gray-700 bg-gray-100"
-            readOnly
-          />
-        ))}
-      </div>
-
     </div>
   );
 };

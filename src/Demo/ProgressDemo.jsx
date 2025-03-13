@@ -7,7 +7,7 @@ import Progress from "../Dashboard/Progress";
 const ProgressDemo = ({ tasks }) => {
   return (
     <div>
-       <h2 className="font-bold font-2xl">Progress</h2>
+    
       <SortableContext
         items={tasks.map((task) => task.id)}
         strategy={verticalListSortingStrategy}
